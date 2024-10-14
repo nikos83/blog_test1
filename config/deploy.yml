@@ -95,7 +95,7 @@ accessories:
     env:
       clear:
         POSTGRES_USER: "my_awesome_app"
-        POSTGRES_DB: "my_awesome_app_production" # The database will be created automatically on first boot.
+        POSTGRES_DB: "blog_test1_production" # The database will be created automatically on first boot.
       secret:
         - POSTGRES_PASSWORD
     directories:
