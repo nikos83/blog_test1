@@ -88,7 +88,8 @@ ssh:
   user: root
   port: 10248
 
-# Use accessory services (secrets come from .kamal/secrets).
+# Use accessory services (secrets come from .kamal/secrets).psql -U my_awesome_app -h localhost -d blog_test1_production
+
 accessories:
   db:
     image: postgres:14

@@ -83,6 +83,8 @@ production:
     database: blog_test1_production
     username: my_awesome_app
     password: <%= ENV["POSTGRES_PASSWORD"] %>
+    host: db # Zamiast localhost użyj nazwy kontenera PostgreSQL
+    port: 5432
   cache:
     <<: *primary_production
     database: blog_test1_production_cache
