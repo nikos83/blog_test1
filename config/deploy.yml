@@ -91,7 +91,7 @@ ssh:
 # Use accessory services (secrets come from .kamal/secrets).
 accessories:
   db:
-    image: postgres:16
+    image: postgres:14
     host: srv28.mikr.us
     # port: 5432 # Remove this line!
     env:
@@ -102,8 +102,7 @@ accessories:
         - POSTGRES_PASSWORD
     directories:
       - data:/var/lib/postgresql/data
-    options:
-      network: blog_network
+
     # options:
     #   network: "private" #
 # accessories:
