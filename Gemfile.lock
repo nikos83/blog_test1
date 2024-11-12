@@ -112,6 +112,7 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    devise-bootstrap-views (1.1.0)
     dotenv (3.1.4)
     drb (2.2.1)
     ed25519 (1.3.0)
@@ -363,6 +364,7 @@ DEPENDENCIES
   cssbundling-rails (~> 1.4)
   debug
   devise (~> 4.9)
+  devise-bootstrap-views (~> 1.0)
   importmap-rails
   jbuilder
   kamal (>= 2.0.0.rc2)

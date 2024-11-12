@@ -63,5 +63,6 @@ group :test do
 end
 
 gem "cssbundling-rails", "~> 1.4"
-
 gem "devise", "~> 4.9"
+gem 'devise-bootstrap-views', '~> 1.0'
+
