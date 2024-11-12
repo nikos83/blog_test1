@@ -1,16 +1,18 @@
-<p style="color: green"><%= notice %></p>
-
+<p class="text-success"><%= notice %></p>
 <% content_for :title, "Posts" %>
-
-<h1>Posts</h1>
-
-<div id="posts">
+<div id="posts" class="row">
   <% @posts.each do |post| %>
-    <%= render post %>
-    <p>
-      <%= link_to "Show this post", post %>
-    </p>
+    <div class="col-md-4 mb-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title"><%= post.title %></h5>
+          <p class="card-text"><%= truncate(post.content, length: 100) %></p>
+          <%= link_to "Show this post", post, class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
   <% end %>
 </div>
-
-<%= link_to "New post", new_post_path %>
+<div class="d-flex justify-content-center my-4">
+  <%= link_to "New post", new_post_path, class: "btn btn-success" %>
+</div>
