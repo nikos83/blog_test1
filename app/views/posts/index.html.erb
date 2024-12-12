@@ -21,3 +21,7 @@
 <div class="d-flex justify-content-center my-4">
   <%= link_to "New post", new_post_path, class: "btn btn-success" %>
 </div>
+<!-- Paginacja -->
+<div class="d-flex justify-content-center mt-4">
+  <%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
+</div>
