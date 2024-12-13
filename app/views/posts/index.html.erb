@@ -5,6 +5,11 @@
     <div class="col-md-4 mb-4">
       <div class="card shadow-sm">
         <div class="card-body">
+          <% if post.cover_image.attached? %>
+            <%= image_tag post.cover_image %>
+          <% else %>
+            <p>No cover image uploaded</p>
+          <% end %>
           <h5 class="card-title"><%= post.title %></h5>
           <p class="card-text"><%= truncate(post.content, length: 100) %></p>
           <%= link_to "Show this post", post, class: "btn btn-primary" %>
@@ -15,4 +20,8 @@
 </div>
 <div class="d-flex justify-content-center my-4">
   <%= link_to "New post", new_post_path, class: "btn btn-success" %>
+</div>
+<!-- Paginacja -->
+<div class="d-flex justify-content-center mt-4">
+  <%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
 </div>

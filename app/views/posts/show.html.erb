@@ -1,6 +1,11 @@
 <p class="text-success"><%= notice %></p>
 <div class="card shadow-sm">
   <div class="card-body">
+    <% if @post.cover_image.attached? %>
+      <%= image_tag @post.cover_image %>
+    <% else %>
+      <p>No cover image uploaded</p>
+    <% end %>
     <h2 class="card-title"><%= @post.title %></h2>
     <p class="card-text"><%= @post.content %></p>
   </div>
