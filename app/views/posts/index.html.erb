@@ -1,27 +1,28 @@
 <p class="text-success"><%= notice %></p>
-<% content_for :title, "Posts" %>
+<% content_for :title, "Lista ogłoszeń" %>
 <div id="posts" class="row">
   <% @posts.each do |post| %>
     <div class="col-md-4 mb-4">
-      <div class="card shadow-sm">
+      <div class="card h-100 shadow-sm">
+        <% if post.cover_image.attached? %>
+          <%= image_tag post.cover_image, class: "card-img-top", style: "height: 200px; object-fit: cover;" %>
+        <% else %>
+          <div class="card-img-top bg-secondary text-center text-white p-5">
+            <p>Brak zdjęcia</p>
+          </div>
+        <% end %>
         <div class="card-body">
-          <% if post.cover_image.attached? %>
-            <%= image_tag post.cover_image %>
-          <% else %>
-            <p>No cover image uploaded</p>
-          <% end %>
-          <h5 class="card-title"><%= post.title %></h5>
-          <p class="card-text"><%= truncate(post.content, length: 100) %></p>
-          <%= link_to "Show this post", post, class: "btn btn-primary" %>
+          <h5 class="card-title mb-2 text-truncate" style="max-width: 100%;"><%= post.title %></h5>
+          <p class="card-text text-muted mb-3 text-truncate" style="max-width: 100%;"><%= truncate(post.content, length: 80) %></p>
+          <%= link_to "Pokaż ogłoszenie", post_path(post), class: "btn btn-primary btn-sm" %>
         </div>
       </div>
     </div>
   <% end %>
 </div>
-<div class="d-flex justify-content-center my-4">
-  <%= link_to "New post", new_post_path, class: "btn btn-success" %>
-</div>
-<!-- Paginacja -->
 <div class="d-flex justify-content-center mt-4">
   <%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
+</div>
+<div class="d-flex justify-content-center my-4">
+  <%= link_to "Dodaj nowe ogłoszenie", new_post_path, class: "btn btn-success" %>
 </div>

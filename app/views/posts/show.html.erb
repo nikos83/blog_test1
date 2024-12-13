@@ -1,17 +1,14 @@
-<p class="text-success"><%= notice %></p>
-<div class="card shadow-sm">
+<div class="card">
+  <% if @post.cover_image.attached? %>
+    <%= image_tag @post.cover_image, class: "card-img-top" %>
+  <% else %>
+    <div class="card-img-top bg-secondary text-center text-white p-5">Brak zdjęcia</div>
+  <% end %>
   <div class="card-body">
-    <% if @post.cover_image.attached? %>
-      <%= image_tag @post.cover_image %>
-    <% else %>
-      <p>No cover image uploaded</p>
-    <% end %>
-    <h2 class="card-title"><%= @post.title %></h2>
+    <h1 class="card-title"><%= @post.title %></h1>
     <p class="card-text"><%= @post.content %></p>
+    <%= link_to "Edytuj", edit_post_path(@post), class: "btn btn-warning" %>
+    <%= link_to "Usuń", post_path(@post), method: :delete, data: { confirm: "Czy na pewno chcesz usunąć?" }, class: "btn btn-danger" %>
+    <%= link_to "Powrót", posts_path, class: "btn btn-secondary" %>
   </div>
-</div>
-<div class="my-4 d-flex gap-2">
-  <%= link_to "Edit this post", edit_post_path(@post), class: "btn btn-warning d-inline" %>
-  <%= link_to "Back to posts", posts_path, class: "btn btn-secondary d-inline" %>
-  <%= button_to "Destroy this post", @post, method: :delete, class: "btn btn-danger d-inline" %>
 </div>

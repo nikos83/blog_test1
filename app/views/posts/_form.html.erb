@@ -1,27 +1,16 @@
-<%= form_with(model: post, local: true, class: "needs-validation") do |form| %>
-  <% if post.errors.any? %>
-    <div class="alert alert-danger">
-      <h4><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h4>
-      <ul>
-        <% post.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= form_with model: @post, local: true do |f| %>
   <div class="mb-3">
-    <%= form.label :title, class: "form-label" %>
-    <%= form.text_field :title, class: "form-control" %>
+    <%= f.label :title, "Tytuł" %>
+    <%= f.text_field :title, class: "form-control", required: true %>
   </div>
   <div class="mb-3">
-    <%= form.label :content, class: "form-label" %>
-    <%= form.text_area :content, class: "form-control" %>
+    <%= f.label :content, "Opis" %>
+    <%= f.text_area :content, class: "form-control", rows: 5, required: true %>
   </div>
   <div class="mb-3">
-    <%= form.label :cover_image, class: "form-label" %>
-    <%= form.file_field :cover_image, class: "form-control" %>
+    <%= f.label :cover_image, "Zdjęcie główne" %>
+    <%= f.file_field :cover_image, class: "form-control" %>
   </div>
-  <div>
-    <%= form.submit "Save Post", class: "btn btn-primary" %>
-  </div>
+  <%= f.submit "Zapisz", class: "btn btn-primary" %>
 <% end %>
+<%= link_to "Powrót", posts_path, class: "btn btn-secondary mt-3" %>
