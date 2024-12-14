@@ -5,11 +5,13 @@ class Post < ApplicationRecord
   validates :title, presence: true, length: { minimum: 5 }
   validates :content, presence: true, length: { minimum: 10 }
 
-  after_commit :process_cover_image_async, on: [:create, :update]
+  after_commit :process_cover_image_async, on: [ :create, :update ]
 
   private
 
   def process_cover_image_async
+    return if cover_image.blob.content_type == "image/webp"
+
     ProcessCoverImageJob.set(wait: 30.seconds).perform_later(self)
   end
 end
