@@ -8,7 +8,7 @@
     <h1 class="card-title"><%= @post.title %></h1>
     <p class="card-text"><%= @post.content %></p>
     <%= link_to "Edytuj", edit_post_path(@post), class: "btn btn-warning" %>
-    <%= link_to "Usuń", post_path(@post), method: :delete, data: { confirm: "Czy na pewno chcesz usunąć?" }, class: "btn btn-danger" %>
+    <%= link_to "Usuń", post_path(@post), data: { turbo_method: :delete, turbo_confirm: "Czy na pewno chcesz usunąć?" }, class: "btn btn-danger" %>
     <%= link_to "Powrót", posts_path, class: "btn btn-secondary" %>
   </div>
 </div>
