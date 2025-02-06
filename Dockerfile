@@ -15,9 +15,38 @@ FROM docker.io/library/ruby:$RUBY_VERSION-slim AS base
 WORKDIR /rails
 
 # Install base packages
+# Instalacja niezbędnych pakietów do kompilacji
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y curl libjemalloc2 libvips postgresql-client && \
-    rm -rf /var/lib/apt/lists /var/cache/apt/archives
+    apt-get install --no-install-recommends -y \
+      build-essential \
+      curl \
+      libjemalloc2 \
+      libvips \
+      postgresql-client \
+      libmagickwand-dev \
+      pkg-config \
+      libpng-dev \
+      libjpeg-dev \
+      libtiff-dev \
+      libwebp-dev \
+      libx11-dev \
+      libxt-dev \
+      && rm -rf /var/lib/apt/lists/*
+
+# Pobranie najnowszej wersji ImageMagick 7 bez podawania konkretnej wersji
+RUN mkdir -p /usr/local/src && \
+    cd /usr/local/src && \
+    curl -fsSL "https://imagemagick.org/archive/ImageMagick.tar.gz" -o ImageMagick.tar.gz && \
+    tar xvzf ImageMagick.tar.gz && \
+    cd ImageMagick-* && \
+    ./configure --enable-shared --with-modules && \
+    make -j$(nproc) && \
+    make install && \
+    ldconfig && \
+    cd / && rm -rf /usr/local/src/ImageMagick*
+
+# Sprawdzenie poprawnej instalacji ImageMagick
+RUN convert --version
 
 # Set production environment
 ENV RAILS_ENV="production" \
